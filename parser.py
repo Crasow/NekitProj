@@ -3,9 +3,6 @@ from bs4 import BeautifulSoup
 from data import username, password
 from pprint import pprint
 
-
-def break_captcha
-
 def main():
     login_url = "https://www.dream-singles.com/login"
     target_url = "https://www.dream-singles.com/members/connections/myFavorites?all=1&folder=32483"
