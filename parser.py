@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 from data import username, password
 from pprint import pprint
 
+
 def main():
     login_url = "https://www.dream-singles.com/login"
     target_url = "https://www.dream-singles.com/members/connections/myFavorites?all=1&folder=32483"
@@ -14,8 +15,6 @@ def main():
         token = soup.find(id='_token').get('value')
         print(token)
 
-
-
         data = {
             '_username': username,
             '_password': password,
@@ -26,7 +25,7 @@ def main():
         r_post = session.post(login_url, data=data)
 
         pprint(r_post.text)
-        with open('index.html', 'w', encoding='utf-8') as f:
+        with open('html/index.html', 'w', encoding='utf-8') as f:
             f.write(r_post.text)
 
 

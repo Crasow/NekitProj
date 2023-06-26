@@ -3,10 +3,14 @@ import keyboard
 import pyperclip
 import logging
 from selenium import webdriver
+from json_funcs import *
+
 
 from kb_layout_detector import lang_fix
 
 log_level = logging.DEBUG
+data = get_data()
+DELAY = data['delay']
 
 
 def open_tabs_for_test(browser):
@@ -31,7 +35,7 @@ def switch_tab():
     keyboard.press('tab')
     keyboard.release('tab')
     keyboard.release('ctrl')
-    time.sleep(0.05)
+    time.sleep(DELAY)
 
 
 def select_link():
@@ -39,7 +43,7 @@ def select_link():
     keyboard.press(fixed_signs[0])
     keyboard.release(fixed_signs[0])
     keyboard.release('ctrl')
-    time.sleep(0.05)
+    time.sleep(DELAY)
 
 
 def copy():
@@ -47,7 +51,7 @@ def copy():
     keyboard.press(fixed_signs[1])
     keyboard.release(fixed_signs[1])
     keyboard.release('ctrl')
-    time.sleep(0.05)
+    time.sleep(DELAY)
 
 
 def save_staff_to_txt(staff_list):
@@ -77,11 +81,6 @@ def main(steps):
 
     links.clear()
 
-    global cnt
-    if cnt == 0:
-        print(
-            "Теперь ты в любой момент можешь написать сюда другое кол-во страниц или нажать o для срабатывания скрипта")
-        cnt += 1
 
 
 if __name__ == '__main__':
@@ -92,7 +91,6 @@ if __name__ == '__main__':
 
     logger = create_logger(log_level)
     links = []
-    cnt = 0
     fixed_signs = lang_fix()
 
     logger.debug(fixed_signs)
